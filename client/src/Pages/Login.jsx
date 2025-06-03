@@ -7,7 +7,8 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [password, setPassword] = useState('');
-  const {setToken, email, setEmail } = useContext(AppContext);
+  const { setToken, email, setEmail } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
 
 
   const navigate = useNavigate();
@@ -16,14 +17,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const endpoint = isLogin ? 'login' : 'signup';
-
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/${endpoint}`, {
         email,
         password,
       });
 
       const receivedToken = res.data.token;
+      setLoading(false);
       setToken(receivedToken);
       localStorage.setItem('token', receivedToken);
       navigate('/');
@@ -31,10 +33,9 @@ const Login = () => {
     } catch (error) {
       console.error("Error:", error);
       toast.error('Authentication failed.');
+      setLoading(false);
     }
   };
-
-
 
   return (
     <div className="flex justify-center items-center min-h-screen px-4 bg-[url('/types-of-scholarship-for-students.webp')] bg-cover bg-center">
@@ -68,7 +69,7 @@ const Login = () => {
             type="submit"
             className="w-full cursor-pointer bg-purple-600 text-white py-2 rounded-md font-semibold hover:bg-purple-700 transition"
           >
-            {isLogin ? 'Login' : 'Sign Up'}
+            {loading ? (isLogin ? 'Login...' : 'Sign Up...') : (isLogin ? 'Login' : 'Sign Up')}
           </button>
         </form>
 

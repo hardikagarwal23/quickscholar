@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Profile = () => {
-  const { setIsProfileCompleted, token,backendUrl ,profile, setProfile, uniqueStates } = useContext(AppContext);
+  const { setIsProfileCompleted, token, backendUrl, profile, setProfile, uniqueStates } = useContext(AppContext);
 
   const navigate = useNavigate();
 

@@ -7,7 +7,7 @@ import { SyncLoader } from "react-spinners";
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
 
   const [posts, setPosts] = useState([]);
@@ -120,9 +120,9 @@ const AppContextProvider = (props) => {
     <AppContext.Provider value={value}>
       {loadingUserData ? (
         <div className="flex justify-center items-center h-screen">
-  <SyncLoader color="#AD46FF" size={18} />  
-</div>
-        ) : (
+          <SyncLoader color="#AD46FF" size={18} />
+        </div>
+      ) : (
         props.children
       )}
     </AppContext.Provider>

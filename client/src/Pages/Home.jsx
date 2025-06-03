@@ -1,6 +1,6 @@
-import React from 'react'
-import Scholarships from '../components/Scholarships'
-import ScholarshipsClosingSoon from '../components/ScholarshipsClosingSoon'
+import React from 'react';
+import Scholarships from '../components/Scholarships';
+import ScholarshipsClosingSoon from '../components/ScholarshipsClosingSoon';
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <ScholarshipsClosingSoon />
       <Scholarships />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

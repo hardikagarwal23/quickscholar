@@ -15,7 +15,7 @@ const ScholarshipsClosingSoon = () => {
 
   useEffect(() => {
     const lastFiveDates = [];
-    for (let i = 0; i <14; i++) {
+    for (let i = 0; i < 14; i++) {
       const date = new Date();
       date.setDate(date.getDate() + i);
       const formattedDate = date.toLocaleDateString('en-US', {
@@ -47,7 +47,6 @@ const ScholarshipsClosingSoon = () => {
   return closingPosts.length > 0 && (
     <div >
 
-
       <div onClick={() => setShowClosingPosts((prev) => (!prev))} className='cursor-pointer hover:bg-gradient-to-br hover:from-yellow-100 hover:to-yellow-200 bg-yellow-100 border border-yellow-300 text-center py-2 font-semibold text-red-800'>
         Scholarships Closing Soon – <span className='animate-pulse'>Apply Now!</span>
       </div>
@@ -78,7 +77,7 @@ const ScholarshipsClosingSoon = () => {
                     transform: flippedIndex === index ? 'rotateY(180deg)' : '',
                   }}
                 >
-                  {/* FRONT */}
+                  {/* Front */}
                   <div
                     className="absolute w-full h-full bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex flex-col justify-between"
                     style={{ backfaceVisibility: 'hidden' }}
@@ -103,7 +102,7 @@ const ScholarshipsClosingSoon = () => {
                         <span>{post.state}</span>
                       </div>
 
-                     
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
 
 
@@ -156,7 +155,7 @@ const ScholarshipsClosingSoon = () => {
                     </div>
                   </div>
 
-                  {/* BACK */}
+                  {/* Back */}
                   <div
                     className="absolute w-full h-full bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex flex-col justify-between"
                     style={{

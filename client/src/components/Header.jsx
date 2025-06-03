@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 
 const Header = () => {
-  const {setToken,posts,searchQuery,setSearchQuery,setFilteredPosts,uniqueStates,uniqueProviders,isProfileCompleted,profile,} = useContext(AppContext);
+  const { setToken, posts, searchQuery, setSearchQuery, setFilteredPosts, uniqueStates, uniqueProviders, isProfileCompleted, profile } = useContext(AppContext);
 
   const [dropDown, setDropDown] = useState(false);
   const [offeredBy, setOfferedBy] = useState('');
@@ -127,7 +127,7 @@ const Header = () => {
             </span>
           </div>
 
-          {/* Mobile Menu Items */}
+          {/* Mobile Menu Options */}
           <AnimatePresence>
             {mobileMenu && (
 
@@ -246,10 +246,10 @@ const Header = () => {
           <div
             onClick={matching}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition ${isProfileCompleted
-                ? matchByProfile
-                  ? 'bg-gradient-to-tr from-purple-500 to-purple-400 cursor-pointer'
-                  : 'bg-gradient-to-tr from-purple-400 to-purple-300 hover:from-purple-500 hover:to-purple-400 cursor-pointer'
-                : 'bg-gradient-to-tr from-gray-400 to-gray-300 pointer-events-none cursor-not-allowed'
+              ? matchByProfile
+                ? 'bg-gradient-to-tr from-purple-500 to-purple-400 cursor-pointer'
+                : 'bg-gradient-to-tr from-purple-400 to-purple-300 hover:from-purple-500 hover:to-purple-400 cursor-pointer'
+              : 'bg-gradient-to-tr from-gray-400 to-gray-300 pointer-events-none cursor-not-allowed'
               }`}
           >
             <span>Match by profile ✦</span>
