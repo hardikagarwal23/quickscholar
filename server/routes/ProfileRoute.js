@@ -3,7 +3,7 @@ import User from '../schema/user.js';
 
 const router = express.Router();
 
-router.post('/update', async (req, res) => {
+router.put('/update', async (req, res) => {
   try {
     const { profile } = req.body;
 

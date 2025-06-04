@@ -14,7 +14,7 @@ const Profile = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(
+      const res = await axios.put(
         `${backendUrl}/api/profile/update`,
         { profile },
         {
