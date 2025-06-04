@@ -20,7 +20,6 @@ const Scholarships = () => {
     }
   }
 
-
   const [displayCount, setDisplayCount] = useState(0);
 
   useEffect(() => {
@@ -32,17 +31,23 @@ const Scholarships = () => {
     fetchPosts();
   }, []);
 
-
-
   useEffect(() => {
-    const controls = animate(0, filteredPosts.length, {
+    if (loading || filteredPosts.length === 0) {
+      setDisplayCount(filteredPosts.length);
+      return;
+    }
+
+    const controls = animate(displayCount, filteredPosts.length, {
       duration: 0.5,
       onUpdate: (latest) => {
         setDisplayCount(Math.round(latest));
-      }
+      },
     });
+
     return () => controls.stop();
-  }, [filteredPosts]);
+  }, [filteredPosts,loading]);
+
+
 
 
   return (

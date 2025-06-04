@@ -1,7 +1,5 @@
-import { createContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
 import { SyncLoader } from "react-spinners";
 
 export const AppContext = createContext();
@@ -18,7 +16,8 @@ const AppContextProvider = (props) => {
   const [email, setEmail] = useState('');
   const [loadingUserData, setLoadingUserData] = useState(true);
 
-
+  const [uniqueStates, setUniqueStates] = useState([]);
+  const [uniqueProviders, setUniqueProviders] = useState([]);
 
   const [profile, setProfile] = useState({
     name: '',
@@ -30,19 +29,25 @@ const AppContextProvider = (props) => {
   });
 
   const getPosts = async () => {
-
     try {
       const { data } = await axios.get(`${backendUrl}/api/all-scholarships`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setPosts(data);
+
+      // Get unique values for dropdowns
+      const states = [...new Set(data.map(post => post.state).filter(Boolean))];
+      const providers = [...new Set(data.map(post => post.provider).filter(Boolean))];
+
+      setUniqueStates(states);
+      setUniqueProviders(providers);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error("Error fetching posts:", error.message);
     }
   };
-
 
   const userData = async () => {
     try {
@@ -52,49 +57,27 @@ const AppContextProvider = (props) => {
         },
       });
 
-
       const user = data.data;
       const isComplete = user.isProfileCompleted;
       const profile = user.profile;
+
       setIsProfileCompleted(isComplete);
 
       if (isComplete) {
         setProfile({
-          name: user.profile?.name || '',
-          state: user.profile?.state || '',
-          GPA: user.profile?.GPA || '',
-          preferredAmount: user.profile?.preferredAmount || '',
-          age: user.profile?.age || '',
-          institution: user.profile?.institution || '',
+          name: profile?.name || '',
+          state: profile?.state || '',
+          GPA: profile?.GPA || '',
+          preferredAmount: profile?.preferredAmount || '',
+          age: profile?.age || '',
+          institution: profile?.institution || '',
         });
-
       }
     } catch (error) {
       console.error("Error in userData:", error.message);
     } finally {
       setLoadingUserData(false);
     }
-  };
-
-
-  // Get unique values for dropdowns
-  const uniqueStates = [...new Set(posts.map(post => post.state).filter(Boolean))];
-  const uniqueProviders = [...new Set(posts.map(post => post.provider).filter(Boolean))];
-
-
-  const value = {
-    backendUrl,
-    posts,
-    getPosts,
-    searchQuery,
-    setSearchQuery, filteredPosts, setFilteredPosts,
-    token, setToken,
-    email, setEmail,
-    uniqueStates, uniqueProviders,
-    isProfileCompleted, setIsProfileCompleted,
-    profile, setProfile,
-    userData,
-    loadingUserData, setLoadingUserData
   };
 
 
@@ -112,9 +95,24 @@ const AppContextProvider = (props) => {
   useEffect(() => {
     if (token) {
       userData();
+      getPosts();
     }
   }, [token]);
 
+  const value = {
+    backendUrl,
+    posts,
+    getPosts,
+    searchQuery,
+    setSearchQuery, filteredPosts, setFilteredPosts,
+    token, setToken,
+    email, setEmail,
+    uniqueStates, uniqueProviders,
+    isProfileCompleted, setIsProfileCompleted,
+    profile, setProfile,
+    userData,
+    loadingUserData, setLoadingUserData
+  };
 
   return (
     <AppContext.Provider value={value}>
@@ -127,20 +125,6 @@ const AppContextProvider = (props) => {
       )}
     </AppContext.Provider>
   );
-
 };
 
 export default AppContextProvider;
-
-
-
-
-
-
-
-
-
-
-
-
-

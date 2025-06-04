@@ -93,7 +93,8 @@ const Header = () => {
     <div className="bg-purple-200 px-6 sm:px-10 py-4 relative">
       {/* Header Row */}
       <div className="flex flex-col xl:flex-row justify-between items-center flex-wrap gap-4">
-        <div className="text-3xl font-bold text-center sm:text-left">QuickScholar</div>
+        
+        <a className="text-3xl font-bold text-center sm:text-left cursor-pointer" href='/'>QuickScholar</a>
 
         {/* Search & Menu */}
         <div className="flex flex-col sm:flex-row items-center gap-x-3 w-full sm:max-w-max">
