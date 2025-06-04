@@ -3,31 +3,9 @@ QuickScholar is a platform that helps students to find the relevant scholarships
 
 Live Demo-(https://quickscholar.vercel.app/)
 
-
-Features:
--Email & password login/signup
--Filters: Search by name, state, offered by
--Profile-based matching (State, GPA, Preferred Amount)
--Closing Soon filter (shows scholarships closing in next two weeks)
-
-Tech Stack:
-Frontend-
-React.js
-Tailwind CSS
-Framer Motion(for animation)
-
-Backend-
-Nodejs
-Expressjs
-MongoDB
-
-Authentication:
-Email & Password (Passwords hashed with bcrypt and authenticated via JWT tokens)
-
-Data Source:
-Pre-scraped using BeautifulSoup
-Stored in MongoDB
-
+Login/Sign up Page:![image](https://github.com/user-attachments/assets/db8a0e1b-adb4-49cc-8c4f-078d75980388)
+Home Page:![image](https://github.com/user-attachments/assets/ef19e895-8f56-4617-952d-3473671f712f)
+Profile Page:![image](https://github.com/user-attachments/assets/0ade2bb5-4f40-4b24-a73d-84757a6793a4)
 
 # Clone the repo
 git clone https://github.com/hardikagarwal23/QuickScholar.git
