@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { AppContext } from '../contexts/AppContext.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +6,13 @@ import { toast } from 'react-toastify';
 
 const Profile = () => {
   const { setIsProfileCompleted, token, backendUrl, profile, setProfile, uniqueStates } = useContext(AppContext);
-
+  const [loading,setLoading]=useState(false);
   const navigate = useNavigate();
 
 
   const handleProfile = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const res = await axios.post(
         `${backendUrl}/api/profile/update`,
@@ -23,10 +23,12 @@ const Profile = () => {
           },
         }
       );
+      setLoading(false);
       toast.success(res.data.message);
       setIsProfileCompleted(true);
       navigate('/');
     } catch (error) {
+      setLoading(false);
       console.error("Error updating profile:", error);
       toast.error("Profile update failed");
     }
@@ -121,7 +123,7 @@ const Profile = () => {
             type="submit"
             className="w-full mt-1 bg-purple-600 hover:bg-purple-700 cursor-pointer text-white text-lg font-semibold py-2 rounded-md transition duration-200"
           >
-            Save Profile
+           {loading? 'Save Profile...' : 'Save Profile'} 
           </button>
         </form>
       </div>
