@@ -120,7 +120,7 @@ const Header = () => {
           {/* Mobile Menu Icon */}
           <div
             onClick={() => setMobileMenu((prev) => !prev)}
-            className="flex sm:hidden w-full justify-between items-center mt-2 px-4 py-2 bg-white rounded-lg font-semibold cursor-pointer"
+            className="flex sm:hidden w-full justify-between items-center mt-2 px-4 py-1 bg-white rounded-lg font-semibold cursor-pointer"
           >
             Menu
             <span className={`inline-block text-2xl transform transition-transform duration-200 ${mobileMenu ? 'rotate-45' : ''}`}>
@@ -136,7 +136,7 @@ const Header = () => {
                 key="mobileMenu"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
+                exit={{ opacity: 0.1, height: 0 }}
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
                 className="flex flex-col gap-y-2 mt-2 bg-purple-100 rounded-md p-2 w-full"
               >
